@@ -61,6 +61,32 @@ sleep(2)
 for i in a:
     print(i.text)
 
+# 7.	From the “Accounts & Lists” section on the Amazon homepage, select the “Your Wish List” option.
+driver.get("https://www.amazon.in/")
+sleep(3)
+a = driver.find_element("id", "nav-link-accountList")
+o = ActionChains(driver)
+o.move_to_element(a).perform()
+sleep(2)
+driver.find_element(By.LINK_TEXT, "Your Wish List").click()
+
+# 8. Access the content displayed inside the embedded page and print the heading text visible inside it.
+driver.get("https://www.w3schools.com/html/tryit.asp?filename=tryhtml_iframe")
+driver.switch_to.frame("iframeResult")
+driver.switch_to.frame(0)
+a = driver.find_element(By.TAG_NAME, "h1").text
+print(a)
+
+# 9. Search Laptop and print all product titles.
+driver.get("https://www.amazon.in/")
+sleep(5)
+a = driver.find_element("id", "twotabsearchtextbox")
+a.send_keys("Laptop")
+a.send_keys(Keys.ENTER)
+sleep(3)
+a = driver.find_elements("xpath", "//h2//span")
+for i in a:
+    print(i.text)
 
 sleep(10)
 driver.quit()
